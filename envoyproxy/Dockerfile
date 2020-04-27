@@ -7,8 +7,7 @@ ENV API_SERVER_PORT 8080
 WORKDIR /etc/envoy
 
 COPY . .
-RUN chmod +x template-engine.sh \
-cat envoy.tpl.yaml | template-engine.sh > envoy.yaml
+RUN chmod +x template-engine.sh && cat envoy.tpl.yaml | template-engine.sh > envoy.yaml
 
 CMD /usr/local/bin/envoy -c /etc/envoy/envoy.yaml
 EXPOSE ${PORT}
