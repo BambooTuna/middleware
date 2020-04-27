@@ -8,7 +8,7 @@ WORKDIR /etc/envoy
 
 COPY . .
 RUN chmod +x template-engine.sh \
-cat envoy.tpl.yaml | extcat.sh > envoy.yaml
+cat envoy.tpl.yaml | template-engine.sh > envoy.yaml
 
 CMD /usr/local/bin/envoy -c /etc/envoy/envoy.yaml
 EXPOSE ${PORT}
