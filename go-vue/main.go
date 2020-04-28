@@ -26,7 +26,7 @@ func main() {
 	api := gin.Default()
 	target := config.GetEnvString("API_SERVER_ENDPOINT", "http://localhost:18080")
 	api.Use(reverseProxy("", target))
-	log.Fatal(r.Run(fmt.Sprintf(":%s", "8080")))
+	log.Fatal(api.Run(fmt.Sprintf(":%s", "8080")))
 
 }
 
