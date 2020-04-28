@@ -1,13 +1,11 @@
 FROM golang:1.13 as builder
 
 ARG PORT=${PORT:-9090}
+ARG GO_FILE_PATH=${GO_FILE_PATH:-.}
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
-
-ARG GO_FILE_PATH=${GO_FILE_PATH:-.}
-ARG JS_FILE_PATH=${JS_FILE_PATH:-.}
 
 WORKDIR /go/src/github.com/BambooTuna/middleware/go-vue
 COPY ${GO_FILE_PATH} .
@@ -16,6 +14,7 @@ RUN go get ./... && \
 
 
 FROM node:12.12.0-alpine as vueBuilder
+ARG JS_FILE_PATH=${JS_FILE_PATH:-.}
 WORKDIR /src
 COPY ${JS_FILE_PATH} .
 RUN npm install && \
