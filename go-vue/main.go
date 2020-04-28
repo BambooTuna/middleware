@@ -35,7 +35,7 @@ func reverseProxy(urlPrefix string, target string) gin.HandlerFunc {
 	proxy := httputil.NewSingleHostReverseProxy(url)
 	return func(c *gin.Context) {
 		if strings.HasPrefix(c.Request.URL.Path, urlPrefix) {
-			c.Request.URL.Path = strings.Replace(c.Request.URL.Path, urlPrefix, "/", 1)
+			c.Request.URL.Path = strings.Replace(c.Request.URL.Path, urlPrefix, "", 1)
 			proxy.ServeHTTP(c.Writer, c.Request)
 		}
 	}
