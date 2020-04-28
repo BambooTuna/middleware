@@ -1,13 +1,13 @@
 FROM golang:1.13 as builder
 
-ENV PORT 9090
+ARG PORT=${PORT:-9090}
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
 
-ENV GO_FILE_PATH .
-ENV JS_FILE_PATH .
+ARG GO_FILE_PATH=${GO_FILE_PATH:-.}
+ARG JS_FILE_PATH=${JS_FILE_PATH:-.}
 
 WORKDIR /go/src/github.com/BambooTuna/middleware/go-vue
 COPY ${GO_FILE_PATH} .
