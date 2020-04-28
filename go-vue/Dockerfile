@@ -6,16 +6,18 @@ ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
 
-WORKDIR /go/src/github.com/BambooTuna/middleware/go-vue
-COPY . .
-RUN go get ./... && \
-go build -o app
-
-
+ENV GO_FILE_PATH .
 ENV JS_FILE_PATH .
+
+WORKDIR /go/src/github.com/BambooTuna/middleware/go-vue
+COPY ${GO_FILE_PATH} .
+RUN go get ./... && \
+    go build -o app
+
+
 FROM node:12.12.0-alpine as vueBuilder
 WORKDIR /src
-ADD ${JS_FILE_PATH} .
+COPY ${JS_FILE_PATH} .
 RUN npm install && \
     npm run build
 
