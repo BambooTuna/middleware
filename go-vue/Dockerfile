@@ -27,5 +27,6 @@ COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certifi
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
 COPY --from=builder /go/src/github.com/BambooTuna/middleware/go-vue/app /app
 COPY --from=vueBuilder /src/dist /dist
-EXPOSE ${PORT}, 8080
+EXPOSE ${PORT}
+EXPOSE 8080
 ENTRYPOINT ["/app"]
