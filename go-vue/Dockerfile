@@ -15,6 +15,7 @@ RUN go get ./... && \
 
 FROM node:12.12.0-alpine as vueBuilder
 ARG JS_FILE_PATH=${JS_FILE_PATH:-.}
+ENV API_SERVER_ENDPOINT=http://localhost:18080
 WORKDIR /src
 COPY ${JS_FILE_PATH} .
 RUN npm install && \
