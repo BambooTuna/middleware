@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/BambooTuna/go-server-lib/config"
+	//"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -16,7 +17,7 @@ func main() {
 	target := config.GetEnvString("API_SERVER_ENDPOINT", "http://localhost:18080")
 
 	r := gin.Default()
-
+	//r.Use(cors.Default())
 	r.Use(reverseProxy("/api", target))
 	r.Use(static.Serve("/", static.LocalFile("./dist", false)))
 	r.NoRoute(func(c *gin.Context) {
