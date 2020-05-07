@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	serverPort := config.GetEnvString("PORT", "8080")
+	serverPort := config.GetEnvString("PORT", "9090")
 
 	r := gin.Default()
 	r.Use(static.Serve("/", static.LocalFile("./dist", false)))
