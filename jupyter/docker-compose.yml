@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  jupyter:
+    restart: always
+    build: .
+    ports:
+      - 8888:8888
+    volumes:
+      - ./volume/tmp:/tmp
+      - ./volume/jupyter:/opt/python/jupyter
+      - ./volume/jupyterlab:/opt/python/jupyterlab
+      - ./volume/library:/opt/python/library
